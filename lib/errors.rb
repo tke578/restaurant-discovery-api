@@ -8,7 +8,6 @@ class Errors
 			return
 		raise BadRequest.new()
 		end
-
 	end
 end
 

@@ -16,6 +16,7 @@ class Locations
 		@fav_locations              = fav_locations.pluck(:location_id)
 		@google_api_key 			= ENV['GOOGLE_PLACES_API_KEY']
 		@google_nearby_places_url 	= ENV['GOOGLE_NEARBY_PLACES_URL']
+		@google_photos_url			= ENV['GOOGLE_PHOTOS_URL']
 	end
 
 	def check_location
@@ -67,6 +68,9 @@ class Locations
 		if response["results"].blank?
 			return result
 		end
+		if ["REQUEST_DENIED", "INVALID_REQUEST", "UNKNOWN_ERROR"].include? response["status"]
+			raise BadRequest
+		end
 
 		response["results"].each do |entity|
 			new_response_struct 					= response_struct
@@ -74,7 +78,7 @@ class Locations
 			new_response_struct[:business_status] 	= entity["business_status"]
 			new_response_struct[:business_name]		= entity["name"]
 			new_response_struct[:location]			= entity.fetch("geometry", {})["location"]
-			new_response_struct[:image]				= entity["photos"].blank? ? nil : entity.fetch("photos").first["html_attributions"]
+			new_response_struct[:raw_image_encoded]	= get_image(entity["photos"])
 			new_response_struct[:address]			= entity["vicinity"]
 			new_response_struct[:rating]			= entity["rating"]
 			new_response_struct[:price_level]		= entity["price_level"]
@@ -86,6 +90,18 @@ class Locations
 		result
 	end
 
+	def get_image(photo_response)
+		return nil if photo_response.blank?
+
+		image_id = photo_response.first["photo_reference"]
+		image_size = photo_response.first["height"]
+		query_obj = { "photoreference": image_id, "maxheigt": image_size}
+		errors = Errors.new()
+		response = HTTParty.get(@google_photos_url, query: query_obj)
+		errors.handle_errors(response)
+		return Base64.strict_encode64(response.body)
+	end
+
 	private
 
 	def response_struct
@@ -95,7 +111,7 @@ class Locations
 			"business_status": nil,
 			"location": {},
 			"address": nil,
-			"image": nil,
+			"raw_image_encoded": nil,
 			"is_favorite": false,
 			"rating": nil,
 			"price_level": nil
