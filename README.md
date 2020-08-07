@@ -120,9 +120,9 @@ Search for your favorite restaurants
 | `location_id` | `string` | 
 | `business_name` | `string` | 
 | `business_status` | `string` |
-| `location` | `array`|
+| `location` | `object`|
 | `address` | `string` |
-| `raw_image_encoded| `string` |
+| `raw_image_encoded` | `string` |
 | `is_favorite` | `boolean` |
 | `rating` | `float` |
 | `price_level` | `integer` |
@@ -133,9 +133,23 @@ Search for your favorite restaurants
 ##### Status code `200`
 
 ```
-{ 
-  "email": "drew@yahoo.com",
-  "token": "abc.def.ghi"
+{
+  "results": [
+    {
+            "location_id": "ChIJEwmNQfx-j4ARDUXysT8fnpI",
+            "business_name": "Golden State Pizza & Grill",
+            "business_status": "OPERATIONAL",
+            "location": {
+                "lat": 37.731991,
+                "lng": -122.405623
+            },
+            "address": "2414 San Bruno Ave, San Francisco",
+            "raw_image_encoded": "iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYA",
+            "is_favorite": false,
+            "rating": 3.7,
+            "price_level": 2
+     }
+  ]
 }
 ```
 
