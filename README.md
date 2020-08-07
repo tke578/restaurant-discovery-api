@@ -8,6 +8,8 @@
 * [Add Favorite](#add-favorite)
 * [Remove Favorite](#remove-favorite)
 
+A Authentication token is required for non-user requests. 
+
 
 ## Create User
 
