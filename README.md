@@ -2,6 +2,23 @@
 
 Search for nearby restaurants and add them as your favorites!
 
+
+### Set up
+
+You will need application & database environment variable files
+
+Add `app.env` & `db.env` file to root directory
+
+Download Docker
+
+``docker run build``
+
+```docker-compose up```
+
+```docker-compose run web bundle exec rails db:migrate```
+
+
+
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/184461597f5261bc04fd)
 
 
