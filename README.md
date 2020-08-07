@@ -5,6 +5,8 @@
 * [Create User](#create-user)
 * [Login User](#login-user)
 * [Search](#search)
+* [Add Favorite](#add-favorite)
+* [Remove Favorite](#remove-favorite)
 
 
 ## Create User
@@ -151,6 +153,89 @@ Search for your favorite restaurants
             "price_level": 2
      }
   ]
+}
+```
+
+### Error Response
+
+##### Bad Request 
+##### Status code `400`
+
+```
+{"error": "Error msg" }
+```
+
+
+## Add Favorite
+
+### Request
+
+```http
+POST /api/v1/add_favorite
+Headers Authorization: token
+```
+
+Adds a favorite location
+
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `location_id` | `string` | **Required**. |
+
+### Response
+
+| Field | Type |
+| :--- | :--- | 
+| `msg` | `string` | 
+
+#### Successful Response
+
+##### Status code `200`
+
+```
+{ 
+  "msg": "Favorite location has been added."
+}
+```
+
+### Error Response
+
+##### Bad Request 
+##### Status code `400`
+
+```
+{"error": "Error msg" }
+```
+
+## Remove Favorite
+
+### Request
+
+```http
+POST /api/v1/remove_favorite
+Headers Authorization: token
+```
+
+Adds a favorite location
+
+
+| Body(form-data) | Type | Description |
+| :--- | :--- | :--- |
+| `location_id` | `string` | **Required**. |
+
+### Response
+
+| Field | Type |
+| :--- | :--- | 
+| `msg` | `string` | 
+
+#### Successful Response
+
+##### Status code `200`
+
+```
+{ 
+  "msg": "This location has been removed from your favorites."
 }
 ```
 
