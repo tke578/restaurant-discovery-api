@@ -117,8 +117,16 @@ Search for your favorite restaurants
 
 | Field | Type |
 | :--- | :--- | 
-| `email` | `string` | 
-| `token` | `string` | 
+| `location_id` | `string` | 
+| `business_name` | `string` | 
+| `business_status` | `string` |
+| `location` | `array`|
+| `address` | `string` |
+| `raw_image_encoded| `string` |
+| `is_favorite` | `boolean` |
+| `rating` | `float` |
+| `price_level` | `integer` |
+
 
 #### Successful Response
 
