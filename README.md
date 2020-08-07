@@ -100,6 +100,7 @@ Signs in the user and returns the Authentication token
 
 ```http
 POST /api/v1/search
+Headers Authorization: token
 ```
 
 Search for your favorite restaurants
