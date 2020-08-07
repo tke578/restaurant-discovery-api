@@ -19,10 +19,8 @@ class Api::V1::UsersController < ApplicationController
 
 	def login
 	    @user = User.find_by(email: params[:email])
-
 	    if @user && @user.authenticate(params[:password])
 	      token = encode_token({user_id: @user.id})
-
 	      render json: {user_email: @user.email, token: token}
 	    else
 	      render json: {error: 'Invalid email and/or password.'}, status: :bad_request
