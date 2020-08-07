@@ -1,24 +1,49 @@
-# README
+# Restaurant Discovery API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Table Of Contents
 
-Things you may want to cover:
+* [Create User](#create-user)
 
-* Ruby version
 
-* System dependencies
+## Create User
 
-* Configuration
+### Request
 
-* Database creation
+```http
+POST /api/v1/users/create
+```
 
-* Database initialization
+Creates the user and returns the Authentication token
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `email` | `string` | **Required**. Unique email addresss are only valid |
+| `password` | `string` | **Required** |
 
-* Deployment instructions
+### Response
 
-* ...
+| Field | Type |
+| :--- | :--- | 
+| `email` | `string` | 
+| `token` | `string` | 
+
+#### Successful Response
+
+##### Status code `200`
+
+```
+{ 
+  "email": "drew@yahoo.com",
+  "token": "abc.def.ghi"
+}
+```
+
+### Error Response
+
+##### Bad Request 
+##### Status code `400`
+
+```
+{"error": "Error msg" }
+```
