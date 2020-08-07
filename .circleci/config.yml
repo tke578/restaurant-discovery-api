@@ -112,7 +112,7 @@ jobs:
       - yarn-load-cache
       # Check DB status
       - run:
-          name: Wait for DB
+          name: Wait for  DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       # Setup database
       - run:
