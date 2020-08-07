@@ -16,7 +16,7 @@ A Authentication token is required for non-user requests.
 ### Request
 
 ```http
-POST /api/v1/users/create
+POST /api/v1/users/
 ```
 
 Creates the user and returns the Authentication token
