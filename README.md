@@ -212,7 +212,7 @@ Adds a favorite location
 ### Request
 
 ```http
-POST /api/v1/remove_favorite
+DELETE /api/v1/remove_favorite
 Headers Authorization: token
 ```
 
