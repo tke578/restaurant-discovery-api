@@ -1,5 +1,12 @@
 # Restaurant Discovery API
 
+Search for nearby restaurants and add them as your favorites!
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/184461597f5261bc04fd)
+
+
+
+
 ### Table Of Contents
 
 * [Create User](#create-user)
@@ -19,7 +26,7 @@ A Authentication token is required for non-user requests.
 POST /api/v1/users/
 ```
 
-Creates the user and returns the Authentication token
+Creates the user and returns the Authorization token
 
 
 | Parameter | Type | Description |
@@ -62,7 +69,7 @@ Creates the user and returns the Authentication token
 POST /api/v1/login
 ```
 
-Signs in the user and returns the Authentication token
+Signs in the user and returns the Authorization token
 
 
 | Parameter | Type | Description |
