@@ -3,7 +3,8 @@
 ### Table Of Contents
 
 * [Create User](#create-user)
-* [Login User])(#login-user)
+* [Login User](#login-user)
+* [Search](#search)
 
 
 ## Create User
@@ -92,3 +93,49 @@ Signs in the user and returns the Authentication token
 {"error": "Error msg" }
 ```
 
+
+## search
+
+### Request
+
+```http
+POST /api/v1/search
+```
+
+Search for your favorite restaurants
+
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `radius` | `string` | **Required**. nearby radius in miles |
+| `address` | `string` | **Required if not lat/lon** street name, city, state & zipcode  |
+| `latitude` | `string` | **Required if not address** |
+| `longitude` | `string` | **Required if not address** |
+| `keyword` | `string` | **Optional** Keyword name of restaurant |
+
+### Response
+
+| Field | Type |
+| :--- | :--- | 
+| `email` | `string` | 
+| `token` | `string` | 
+
+#### Successful Response
+
+##### Status code `200`
+
+```
+{ 
+  "email": "drew@yahoo.com",
+  "token": "abc.def.ghi"
+}
+```
+
+### Error Response
+
+##### Bad Request 
+##### Status code `400`
+
+```
+{"error": "Error msg" }
+```
