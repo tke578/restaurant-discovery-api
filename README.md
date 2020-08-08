@@ -22,7 +22,7 @@ Download Docker
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/184461597f5261bc04fd)
 
-
+[![Current Release](https://img.shields.io/badge/Release-v1.0.0-green)](https://github.com/tke578/restaurant-discovery-api/releases/tag/v1.0.0)
 
 
 ### Table Of Contents
