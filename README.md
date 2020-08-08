@@ -25,6 +25,10 @@ Download Docker
 
 Port 3000 will be exposed.
 
+To run tests
+
+`docker exec restaurant-discovery_web_1  rspec`
+
 
 ### Table Of Contents
 
