@@ -18,6 +18,7 @@ Download Docker
 ```docker-compose run web bundle exec rails db:migrate```
 
 
+[![tke578](https://circleci.com/gh/tke578/restaurant-discovery-api.svg?style=svg)](https://app.circleci.com/pipelines/github/tke578/restaurant-discovery-api)
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/184461597f5261bc04fd)
 

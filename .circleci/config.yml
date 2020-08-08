@@ -1,0 +1,90 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@0.1.2
+
+references:
+  default_ruby_version: &default_ruby_version 2.6.3-stretch-node
+  default_postgress_version: &default_postgress_version 9.5-alpine
+  ruby_envs: &ruby_envs
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+      PGHOST: 127.0.0.1
+      PGUSER: circleci-demo-ruby
+      PGPASSWORD: ""
+      RAILS_ENV: test
+  postgres_envs: &postgres_envs
+    environment:
+      POSTGRES_USER: circleci-demo-ruby
+      POSTGRES_DB: restaurant_discovery_test
+      POSTGRES_PASSWORD: ""
+
+executors:
+  default:
+    parameters:
+      ruby_tag:
+        description: "The `circleci/ruby` Docker image version tag."
+        type: string
+        default: *default_ruby_version
+    docker:
+      - image: circleci/ruby:<< parameters.ruby_tag >>
+        <<: *ruby_envs
+  ruby_with_postgres:
+    parameters:
+      ruby_tag:
+        description: "The `circleci/postgres` Docker image version tag."
+        type: string
+        default: *default_ruby_version
+      postgres_tag:
+        description: "The `circleci/postgres` Docker image version tag."
+        type: string
+        default: *default_postgress_version
+    docker:
+      - image: circleci/ruby:<< parameters.ruby_tag >>
+        <<: *ruby_envs
+      - image: circleci/postgres:<< parameters.postgres_tag >>
+        <<: *postgres_envs
+
+jobs:
+  build:
+    executor: default
+    steps:
+      - checkout
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - ruby/load-cache:
+          key: rails-demo-bundle
+      - ruby/bundle-install
+  test:
+    parallelism: 3
+    executor: ruby_with_postgres
+    steps:
+      - checkout
+      - ruby/load-cache:
+          key: rails-demo-bundle
+      - ruby/bundle-install
+      # Check DB status
+      - run:
+          name: Wait for  DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      # Setup database
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      # Run rspec in parallel
+      - run:
+          name: rspec
+          command: bundle exec rspec
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
