@@ -2,6 +2,12 @@
 
 Search for nearby restaurants and add them as your favorites!
 
+[![tke578](https://circleci.com/gh/tke578/restaurant-discovery-api.svg?style=svg)](https://app.circleci.com/pipelines/github/tke578/restaurant-discovery-api)
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/184461597f5261bc04fd)
+
+[![Current Release](https://img.shields.io/badge/Release-v1.0.0-green)](https://github.com/tke578/restaurant-discovery-api/releases/tag/v1.0.0)
+
 
 ### Set up
 
@@ -17,12 +23,8 @@ Download Docker
 
 ```docker-compose run web bundle exec rails db:migrate```
 
+Port 3000 will be expose
 
-[![tke578](https://circleci.com/gh/tke578/restaurant-discovery-api.svg?style=svg)](https://app.circleci.com/pipelines/github/tke578/restaurant-discovery-api)
-
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/184461597f5261bc04fd)
-
-[![Current Release](https://img.shields.io/badge/Release-v1.0.0-green)](https://github.com/tke578/restaurant-discovery-api/releases/tag/v1.0.0)
 
 
 ### Table Of Contents
