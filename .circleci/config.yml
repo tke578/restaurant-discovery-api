@@ -47,42 +47,6 @@ executors:
       - image: circleci/postgres:<< parameters.postgres_tag >>
         <<: *postgres_envs
 
-commands:
-  yarn-install:
-    description: "Install node_modules in your build."
-    parameters:
-      cache-folder-path:
-        description: "The path of cache-folder"
-        type: string
-        default: "~/.cache/yarn"
-    steps:
-      - run:
-          name: Yarn Install
-          command: yarn install --cache-folder << parameters.cache-folder-path >>
-  yarn-load-cache:
-    description: "Load node_modules cached"
-    parameters:
-      key:
-        description: "The cache key to use. The key is immutable."
-        type: string
-        default: "rails-demo-yarn-v1"
-    steps:
-      - restore_cache:
-          keys:
-            - << parameters.key >>-{{ checksum "yarn.lock"  }}
-  yarn-save-cache:
-    description: "Save node_modules to cache."
-    parameters:
-      key:
-        description: "The cache key to use. The key is immutable."
-        type: string
-        default: "rails-demo-yarn-v1"
-    steps:
-      - save_cache:
-          key: << parameters.key >>-{{ checksum "yarn.lock"  }}
-          paths:
-            - ~/.cache/yarn
-
 jobs:
   build:
     executor: default
@@ -95,12 +59,6 @@ jobs:
       - ruby/load-cache:
           key: rails-demo-bundle
       - ruby/bundle-install
-      - ruby/save-cache:
-          key: rails-demo-bundle
-      # restore, install and save node_packages
-      - yarn-load-cache
-      - yarn-install
-      - yarn-save-cache
   test:
     parallelism: 3
     executor: ruby_with_postgres
@@ -109,7 +67,6 @@ jobs:
       - ruby/load-cache:
           key: rails-demo-bundle
       - ruby/bundle-install
-      - yarn-load-cache
       # Check DB status
       - run:
           name: Wait for  DB
@@ -119,7 +76,6 @@ jobs:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
       # Run rspec in parallel
-      # - ruby/test
       - run:
           name: rspec
           command: bundle exec rspec
