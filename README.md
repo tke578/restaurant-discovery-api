@@ -9,7 +9,7 @@ Search for nearby restaurants and add them as your favorites!
 [![Current Release](https://img.shields.io/badge/Release-v1.0.0-green)](https://github.com/tke578/restaurant-discovery-api/releases/tag/v1.0.0)
 
 
-### Set up
+### Local Environment set up
 
 You will need application & database environment variable files
 
@@ -23,8 +23,7 @@ Download Docker
 
 ```docker-compose run web bundle exec rails db:migrate```
 
-Port 3000 will be expose
-
+Port 3000 will be exposed.
 
 
 ### Table Of Contents
@@ -117,7 +116,7 @@ Signs in the user and returns the Authorization token
 
 ### Error Response
 
-##### Bad Request 
+##### Bad Request Error
 ##### Status code `400`
 
 ```
@@ -125,7 +124,7 @@ Signs in the user and returns the Authorization token
 ```
 
 
-## search
+## Search
 
 ### Request
 
@@ -187,7 +186,7 @@ Search for your favorite restaurants
 
 ### Error Response
 
-##### Bad Request 
+##### Bad Request Error
 ##### Status code `400`
 
 ```
@@ -229,7 +228,7 @@ Adds a favorite location
 
 ### Error Response
 
-##### Bad Request 
+##### Bad Request Error
 ##### Status code `400`
 
 ```
@@ -270,7 +269,7 @@ Adds a favorite location
 
 ### Error Response
 
-##### Bad Request 
+##### Bad Request Error
 ##### Status code `400`
 
 ```
