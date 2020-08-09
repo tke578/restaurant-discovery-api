@@ -157,7 +157,7 @@ Search for your favorite restaurants
 | `business_status` | `string` |
 | `location` | `object`|
 | `address` | `string` |
-| `raw_image_encoded` | `string` |
+| `raw_image_encoded` | `string`(base 64 encoded) |
 | `is_favorite` | `boolean` |
 | `rating` | `float` |
 | `price_level` | `integer` |
