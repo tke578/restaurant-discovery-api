@@ -21,13 +21,15 @@ Download Docker
 
 ```docker-compose up```
 
+Open a new shell tab and `cd` into root dir
+
 ```docker-compose run web bundle exec rails db:migrate```
 
 Port 3000 will be exposed.
 
 To run tests
 
-`docker exec restaurant-discovery_web_1  rspec`
+`docker exec restaurant-discovery-api_web_1  rspec`
 
 
 ### Table Of Contents
