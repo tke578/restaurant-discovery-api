@@ -17,7 +17,7 @@ Add `app.env` & `db.env` file to root directory
 
 Download Docker
 
-``docker run build``
+`` docker build  -t restaurant-discovery-api .``
 
 ```docker-compose up```
 
